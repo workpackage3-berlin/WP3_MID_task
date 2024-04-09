@@ -2710,6 +2710,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         MainLoop.addData('EarlyPressFixation.keys',EarlyPressFixation.keys)
 
         if EarlyPressFixation.keys != None:  # we had a response
+            
             # Send LSL Marker : Response as string
             mystring = ' '.join(map(str,EarlyPressFixation.keys))
             resp = "Early "
