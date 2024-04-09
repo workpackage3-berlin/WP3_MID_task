@@ -37,7 +37,6 @@ from pylsl import StreamInfo, StreamOutlet
 info = StreamInfo(name='PsychoPy_LSL', type='Markers', channel_count=1, nominal_srate=0, channel_format='string', source_id='psy_marker')
 outlet = StreamOutlet(info)  # Broadcast the stream.
 
-
 # Run 'Before Experiment' code from RT_list_code
 rt_list = []
 # --- Setup global variables (available in all functions) ---
