@@ -32,14 +32,10 @@ import sys  # to get file system encoding
 import psychopy.iohub as io
 from psychopy.hardware import keyboard
 
-
 from pylsl import StreamInfo, StreamOutlet
 # Set up LabStreamingLayer stream.
 info = StreamInfo(name='PsychoPy_LSL', type='Markers', channel_count=1, nominal_srate=0, channel_format='string', source_id='psy_marker')
 outlet = StreamOutlet(info)  # Broadcast the stream.
-
-
-
 
 # Run 'Before Experiment' code from RT_list_code
 rt_list = []
@@ -2555,14 +2551,15 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             EarlyPressCue.keys = None
         MainLoop.addData('EarlyPressCue.keys',EarlyPressCue.keys)
         if EarlyPressCue.keys != None:  # we had a response
-            MainLoop.addData('EarlyPressCue.rt', EarlyPressCue.rt)
-            MainLoop.addData('EarlyPressCue.duration', EarlyPressCue.duration)
 
             # Send LSL Marker : Response as string
             mystring = ' '.join(map(str,EarlyPressCue.keys))
             resp = "Early "
             print("Response: [%s]" % resp)    
             outlet.push_sample([resp])  # Push event marker.
+
+            MainLoop.addData('EarlyPressCue.rt', EarlyPressCue.rt)
+            MainLoop.addData('EarlyPressCue.duration', EarlyPressCue.duration)
 
         # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
         if routineForceEnded:
@@ -2710,15 +2707,17 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         if EarlyPressFixation.keys in ['', [], None]:  # No response was made
             EarlyPressFixation.keys = None
         MainLoop.addData('EarlyPressFixation.keys',EarlyPressFixation.keys)
-        if EarlyPressFixation.keys != None:  # we had a response
-            MainLoop.addData('EarlyPressFixation.rt', EarlyPressFixation.rt)
-            MainLoop.addData('EarlyPressFixation.duration', EarlyPressFixation.duration)
 
+        if EarlyPressFixation.keys != None:  # we had a response
+            
             # Send LSL Marker : Response as string
             mystring = ' '.join(map(str,EarlyPressFixation.keys))
             resp = "Early "
             print("Response: [%s]" % resp)    
             outlet.push_sample([resp])  # Push event marker.
+
+            MainLoop.addData('EarlyPressFixation.rt', EarlyPressFixation.rt)
+            MainLoop.addData('EarlyPressFixation.duration', EarlyPressFixation.duration)
 
         # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
         if routineForceEnded:
