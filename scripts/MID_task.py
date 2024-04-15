@@ -2114,7 +2114,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             win.callOnFlip(endTraining_startMain.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(endTraining_startMain.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if endTraining_startMain.status == STARTED and not waitOnFlip:
-            theseKeys = endTraining_startMain.getKeys(keyList=['right'], ignoreKeys=["escape"], waitRelease=False)
+            theseKeys = endTraining_startMain.getKeys(keyList=['s'], ignoreKeys=["escape"], waitRelease=False)
             _endTraining_startMain_allKeys.extend(theseKeys)
             if len(_endTraining_startMain_allKeys):
                 endTraining_startMain.keys = _endTraining_startMain_allKeys[0].name  # just the first key pressed
