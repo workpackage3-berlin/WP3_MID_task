@@ -2554,7 +2554,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
             # Send LSL Marker : Response as string
             mystring = ' '.join(map(str,EarlyPressCue.keys))
-            resp = "Early "
+            resp = "Early"
             print("Response: [%s]" % resp)    
             outlet.push_sample([resp])  # Push event marker.
 
@@ -2712,7 +2712,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             
             # Send LSL Marker : Response as string
             mystring = ' '.join(map(str,EarlyPressFixation.keys))
-            resp = "Early "
+            resp = "Early"
             print("Response: [%s]" % resp)    
             outlet.push_sample([resp])  # Push event marker.
 
@@ -2915,28 +2915,25 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # store data for MainLoop (TrialHandler)
         MainLoop.addData('ButtonPressTarget.keys',ButtonPressTarget.keys)
         MainLoop.addData('ButtonPressTarget.corr', ButtonPressTarget.corr)
+        if ButtonPressTarget.keys == None and EarlyPressFixation.keys == None and EarlyPressCue.keys == None:
+            resp = "Late"
+            print("Response: [%s]" % resp)
+            outlet.push_sample([resp])  # Push event marker
         if ButtonPressTarget.keys != None:  # we had a response
-            
             # Send LSL Marker : Response as string
             if ButtonPressTarget.keys == corr_button:
                 mystring = ' '.join(map(str,ButtonPressTarget.keys))
-                resp = "Correct "
-                print("Response: [%s]" % resp)    
-                outlet.push_sample([resp])  # Push event marker
-            elif ButtonPressTarget.keys == None:
-                mystring = ' '.join(map(str,ButtonPressTarget.keys))
-                resp = "Late "
+                resp = "Correct"
                 print("Response: [%s]" % resp)    
                 outlet.push_sample([resp])  # Push event marker
             else:
                 mystring = ' '.join(map(str,ButtonPressTarget.keys))
-                resp = "Incorrect "
+                resp = "Incorrect"
                 print("Response: [%s]" % resp)    
                 outlet.push_sample([resp])  # Push event marker
                 
             MainLoop.addData('ButtonPressTarget.rt', ButtonPressTarget.rt)
             MainLoop.addData('ButtonPressTarget.duration', ButtonPressTarget.duration)
-
         # Run 'End Routine' code from codeFeedbacksaving
         feedbackver = [];
         # Used to decide feedback participants get based on cue (win, loss, neutral) and button press
