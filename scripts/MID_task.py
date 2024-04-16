@@ -34,7 +34,7 @@ from psychopy.hardware import keyboard
 
 from pylsl import StreamInfo, StreamOutlet
 # Set up LabStreamingLayer stream.
-info = StreamInfo(name='PsychoPy_LSL', type='Markers', channel_count=1, nominal_srate=0, channel_format='string', source_id='psy_marker')
+info = StreamInfo(name='PsychoPy_LSL_MID', type='Markers', channel_count=1, nominal_srate=0, channel_format='string', source_id='psy_marker')
 outlet = StreamOutlet(info)  # Broadcast the stream.
 
 # Run 'Before Experiment' code from RT_list_code
@@ -2114,7 +2114,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             win.callOnFlip(endTraining_startMain.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(endTraining_startMain.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if endTraining_startMain.status == STARTED and not waitOnFlip:
-            theseKeys = endTraining_startMain.getKeys(keyList=['right'], ignoreKeys=["escape"], waitRelease=False)
+            theseKeys = endTraining_startMain.getKeys(keyList=['s'], ignoreKeys=["escape"], waitRelease=False)
             _endTraining_startMain_allKeys.extend(theseKeys)
             if len(_endTraining_startMain_allKeys):
                 endTraining_startMain.keys = _endTraining_startMain_allKeys[0].name  # just the first key pressed
@@ -2921,6 +2921,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             if ButtonPressTarget.keys == corr_button:
                 mystring = ' '.join(map(str,ButtonPressTarget.keys))
                 resp = "Correct "
+                print("Response: [%s]" % resp)    
+                outlet.push_sample([resp])  # Push event marker
+            elif ButtonPressTarget.keys == None:
+                mystring = ' '.join(map(str,ButtonPressTarget.keys))
+                resp = "Late "
                 print("Response: [%s]" % resp)    
                 outlet.push_sample([resp])  # Push event marker
             else:
