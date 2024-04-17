@@ -358,7 +358,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Info_training" ---
     InfoScreenText_training = visual.TextStim(win=win, name='InfoScreenText_training',
-        text='Bitte geben Sie der Versuchsleiterin Bescheid, \n um mit dem Monetary Incentive Delay Task fortzufahren.\n',
+        text='Bitte geben Sie der Versuchsleiterin Bescheid, um mit dem Monetary Incentive Delay Task fortzufahren.\n',
         font='Open Sans',
         pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
