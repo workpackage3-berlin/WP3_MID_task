@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on Thu Apr  4 15:20:22 2024
+    on Tue Apr 30 10:00:53 2024
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
         PsychoPy2: Experiments in behavior made easy Behav Res 51: 195. 
         https://doi.org/10.3758/s13428-018-01193-y
+
 """
 
 # --- Import packages ---
@@ -113,7 +114,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version='',
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='/Users/charlotte/Dropbox/Charite_PhD/tasks/MID_py/MID_lsl_test.py',
+        originPath='/Users/charlotte/Dropbox/Charite_PhD/tasks/MID_py/MID_task.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -322,7 +323,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "RT_measure_start" ---
     RT_measure_start_text = visual.TextStim(win=win, name='RT_measure_start_text',
-        text='Initiale Reaktionsgeschwindigkeit. \n\nWenn das grüne Kreuz erscheint, drücken Sie so schnell wie möglich die Taste. \n \nDrücken Sie zum Starten die rechte Taste.\n',
+        text='Initiale Reaktionsgeschwindigkeit. \n\nWenn das grüne Kreuz rechts oder links erscheint, drücken Sie so schnell wie möglich die rechte oder linke Taste. \n \nDrücken Sie zum Starten die rechte Taste.\n',
         font='Open Sans',
         pos=[0,0], height=0.05, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
@@ -342,7 +343,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     RT_target_fig = visual.ShapeStim(
         win=win, name='RT_target_fig', vertices='cross',
         size=(0.25, 0.25),
-        ori=0.0, pos=(0, 0), anchor='center',
+        ori=0.0, pos=[0,0], anchor='center',
         lineWidth=1.0,     colorSpace='rgb',  lineColor='green', fillColor='green',
         opacity=None, depth=0.0, interpolate=True)
     RT_measure_response = keyboard.Keyboard()
@@ -355,7 +356,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
-        
+    
     # --- Initialize components for Routine "StartScreen_training" ---
     StartScreen_ButtonPress_training = keyboard.Keyboard()
     StartScreen_text_training = visual.TextStim(win=win, name='StartScreen_text_training',
@@ -365,7 +366,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-1.0);
-
+    
     # --- Initialize components for Routine "initial_iti_training" ---
     initial_iti_fig_training = visual.ShapeStim(
         win=win, name='initial_iti_fig_training', vertices='cross',
@@ -385,7 +386,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     CueCircle_training = visual.ShapeStim(
         win=win, name='CueCircle_training',
         size=(0.25, 0.25), vertices='circle',
-        ori=0.0, pos=[0,0], anchor='center-left',
+        ori=0.0, pos=[0,0], anchor='center',
         lineWidth=1.0,     colorSpace='rgb',  lineColor='white', fillColor='white',
         opacity=None, depth=0.0, interpolate=True)
     EarlyPressCue_training = keyboard.Keyboard()
@@ -434,7 +435,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "EndScreen_training" ---
     EndScreenText_training = visual.TextStim(win=win, name='EndScreenText_training',
-        text='Herzlichen Glückwunsch, Sie haben die Trainingsphase erfolgreich beendet!\n\n\nBitte geben Sie der Versuchsleiterin Bescheid, um fortzufahren.\n',
+        text='Herzlichen Glückwunsch, Sie haben die Trainingsphase erfolgreich beendet!\n \nBitte geben Sie der Versuchsleiterin Bescheid, um fortzufahren.',
         font='Open Sans',
         pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
@@ -471,7 +472,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     CueCircle = visual.ShapeStim(
         win=win, name='CueCircle',
         size=(0.25, 0.25), vertices='circle',
-        ori=0.0, pos=[0,0], anchor='center-left',
+        ori=0.0, pos=[0,0], anchor='center',
         lineWidth=1.0,     colorSpace='rgb',  lineColor='white', fillColor='white',
         opacity=None, depth=0.0, interpolate=True)
     EarlyPressCue = keyboard.Keyboard()
@@ -656,9 +657,9 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     routineTimer.reset()
     
     # set up handler to look after randomisation of conditions etc
-    RT_measure_loop = data.TrialHandler(nReps=10.0, method='random', 
+    RT_measure_loop = data.TrialHandler(nReps=5.0, method='random', 
         extraInfo=expInfo, originPath=-1,
-        trialList=[None],
+        trialList=data.importConditions('MID_RT_conditions.xlsx'),
         seed=None, name='RT_measure_loop')
     thisExp.addLoop(RT_measure_loop)  # add the loop to the experiment
     thisRT_measure_loop = RT_measure_loop.trialList[0]  # so we can initialise stimuli with some values
@@ -781,6 +782,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         continueRoutine = True
         # update component parameters for each repeat
         thisExp.addData('RT_measure_target.started', globalClock.getTime())
+        RT_target_fig.setPos(rt_loc)
         RT_measure_response.keys = []
         RT_measure_response.rt = []
         _RT_measure_response_allKeys = []
@@ -845,7 +847,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 # keyboard checking is just starting
                 waitOnFlip = True
                 win.callOnFlip(RT_measure_response.clock.reset)  # t=0 on next screen flip
-                win.callOnFlip(RT_measure_response.clearEvents, eventType='keyboard')  # clear events on next screen flip
             
             # if RT_measure_response is stopping this frame...
             if RT_measure_response.status == STARTED:
@@ -865,6 +866,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                     RT_measure_response.keys = _RT_measure_response_allKeys[0].name  # just the first key pressed
                     RT_measure_response.rt = _RT_measure_response_allKeys[0].rt
                     RT_measure_response.duration = _RT_measure_response_allKeys[0].duration
+                    # was this correct?
+                    if (RT_measure_response.keys == str(rt_corr_press)) or (RT_measure_response.keys == rt_corr_press):
+                        RT_measure_response.corr = 1
+                    else:
+                        RT_measure_response.corr = 0
                     # a response ends the routine
                     continueRoutine = False
             
@@ -897,7 +903,14 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # check responses
         if RT_measure_response.keys in ['', [], None]:  # No response was made
             RT_measure_response.keys = None
+            # was no response the correct answer?!
+            if str(rt_corr_press).lower() == 'none':
+               RT_measure_response.corr = 1;  # correct non-response
+            else:
+               RT_measure_response.corr = 0;  # failed to respond (incorrectly)
+        # store data for RT_measure_loop (TrialHandler)
         RT_measure_loop.addData('RT_measure_response.keys',RT_measure_response.keys)
+        RT_measure_loop.addData('RT_measure_response.corr', RT_measure_response.corr)
         if RT_measure_response.keys != None:  # we had a response
             RT_measure_loop.addData('RT_measure_response.rt', RT_measure_response.rt)
             RT_measure_loop.addData('RT_measure_response.duration', RT_measure_response.duration)
@@ -913,7 +926,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         if thisSession is not None:
             # if running in a Session with a Liaison client, send data up to now
             thisSession.sendExperimentData()
-    # completed 10.0 repeats of 'RT_measure_loop'
+    # completed 5.0 repeats of 'RT_measure_loop'
     
     
     # --- Prepare to start Routine "RT_measure_end" ---
@@ -945,7 +958,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     
     # --- Run Routine "RT_measure_end" ---
     routineForceEnded = not continueRoutine
-    while continueRoutine and routineTimer.getTime() < 2:
+    while continueRoutine and routineTimer.getTime() < 1.5:
         # get current time
         t = routineTimer.getTime()
         tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -976,7 +989,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # if RT_measure_endtext is stopping this frame...
         if RT_measure_endtext.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > RT_measure_endtext.tStartRefresh + 2-frameTolerance:
+            if tThisFlipGlobal > RT_measure_endtext.tStartRefresh + 1.5-frameTolerance:
                 # keep track of stop time/frame for later
                 RT_measure_endtext.tStop = t  # not accounting for scr refresh
                 RT_measure_endtext.frameNStop = frameN  # exact frame index
@@ -1741,7 +1754,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             #thisExp.addData('practice_outcome_val', -2)
             calibration_accuracy.append(0)
         elif EarlyPressCue_training.keys != None or EarlyPressFixation_training.keys != None and colour == "yellow":
-            feedbackver_training = "5"; # Early press neutral cue -> points stay the same.
+            feedbackver_training = "6"; # Early press neutral cue -> points stay the same but incorrect.
             thisExp.addData('outcome_label_training', "Early")
             #thisExp.addData('practice_outcome_val', -2)
             calibration_accuracy.append(0)
@@ -1766,7 +1779,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             #thisExp.addData('practice_outcome_val', -1)
             calibration_accuracy.append(0)
         elif ButtonPressTarget_training.corr == 0 and colour == "yellow":
-            feedbackver_training = "5"; # Incorrect press neutral cue -> points stay the same.
+            feedbackver_training = "6"; # Incorrect press neutral cue -> points stay the same.
             thisExp.addData('outcome_label_training', "Incorrect")
             #thisExp.addData('practice_outcome_val', -1)
             calibration_accuracy.append(0)
@@ -1805,11 +1818,16 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             text_training = "Sie haben einen Punkt verloren";
             textcolour_training = 'red';
             reward_counter_training -= 1;
-            
-        # Neutral cue, points unchanged (yellow)
-        else: #Feedback version 5
+        
+        # Neutral cue, correct press, points unchanged (yellow)
+        elif feedbackver_training == "5":
             text_training = "Sie haben keinen Punkt verloren";
-            textcolour_training = 'white';
+            textcolour_training = 'green';
+            
+        # Neutral cue, incorrect press, points unchanged (yellow)
+        else: #Feedback version 6
+            text_training = "Sie haben keinen Punkt verloren";
+            textcolour_training = 'red';
            
         
         
@@ -2280,7 +2298,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     continueRoutine = True
     # update component parameters for each repeat
     thisExp.addData('initial_iti.started', globalClock.getTime())
-    # Run 'Begin Routine' code from leadin_ITI_code  
     # keep track of which components have finished
     initial_itiComponents = [first_ITI_fig]
     for thisComponent in initial_itiComponents:
@@ -2409,7 +2426,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         EarlyPressCue.keys = []
         EarlyPressCue.rt = []
         _EarlyPressCue_allKeys = []
-
         # keep track of which components have finished
         CuePresentationComponents = [CueCircle, EarlyPressCue]
         for thisComponent in CuePresentationComponents:
@@ -2438,8 +2454,8 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             
             # if CueCircle is starting this frame...
             if CueCircle.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-
-                # Send LSL Marker : 
+ 
+                 # Send LSL Marker : 
                 if colour == 'blue': 
                     mark = 'Win_cue'
                     outlet.push_sample([mark])  # Push event marker.
@@ -2449,7 +2465,8 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 else: 
                     mark = 'Loss_cue'
                     outlet.push_sample([mark])  # Push event marker.
-
+ 
+ 
                 # keep track of start time/frame for later
                 CueCircle.frameNStart = frameN  # exact frame index
                 CueCircle.tStart = t  # local t and not account for scr refresh
@@ -2457,7 +2474,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 win.timeOnFlip(CueCircle, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
                 thisExp.timestampOnFlip(win, 'CueCircle.started')
-
                 # update status
                 CueCircle.status = STARTED
                 CueCircle.setAutoDraw(True)
@@ -2506,7 +2522,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                     # keep track of stop time/frame for later
                     EarlyPressCue.tStop = t  # not accounting for scr refresh
                     EarlyPressCue.frameNStop = frameN  # exact frame index
-                    # add timestamp to datafile               
+                    # add timestamp to datafile
                     thisExp.timestampOnFlip(win, 'EarlyPressCue.stopped')
                     # update status
                     EarlyPressCue.status = FINISHED
@@ -2518,7 +2534,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                     EarlyPressCue.keys = _EarlyPressCue_allKeys[0].name  # just the first key pressed
                     EarlyPressCue.rt = _EarlyPressCue_allKeys[0].rt
                     EarlyPressCue.duration = _EarlyPressCue_allKeys[0].duration
-            
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -2574,7 +2589,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         EarlyPressFixation.keys = []
         EarlyPressFixation.rt = []
         _EarlyPressFixation_allKeys = []
-        
         # keep track of which components have finished
         Fixation2000Components = [FixationScreen, EarlyPressFixation]
         for thisComponent in Fixation2000Components:
@@ -2615,7 +2629,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 win.timeOnFlip(FixationScreen, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
                 thisExp.timestampOnFlip(win, 'FixationScreen.started')
-
                 # update status
                 FixationScreen.status = STARTED
                 FixationScreen.setAutoDraw(True)
@@ -2665,7 +2678,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                     EarlyPressFixation.frameNStop = frameN  # exact frame index
                     # add timestamp to datafile
                     thisExp.timestampOnFlip(win, 'EarlyPressFixation.stopped')
-
                     # update status
                     EarlyPressFixation.status = FINISHED
                     EarlyPressFixation.status = FINISHED
@@ -2676,7 +2688,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                     EarlyPressFixation.keys = _EarlyPressFixation_allKeys[0].name  # just the first key pressed
                     EarlyPressFixation.rt = _EarlyPressFixation_allKeys[0].rt
                     EarlyPressFixation.duration = _EarlyPressFixation_allKeys[0].duration
-                   
+            
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
                 thisExp.status = FINISHED
@@ -2707,9 +2719,8 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         if EarlyPressFixation.keys in ['', [], None]:  # No response was made
             EarlyPressFixation.keys = None
         MainLoop.addData('EarlyPressFixation.keys',EarlyPressFixation.keys)
-
         if EarlyPressFixation.keys != None:  # we had a response
-            
+
             # Send LSL Marker : Response as string
             mystring = ' '.join(map(str,EarlyPressFixation.keys))
             resp = "Early"
@@ -2718,7 +2729,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
             MainLoop.addData('EarlyPressFixation.rt', EarlyPressFixation.rt)
             MainLoop.addData('EarlyPressFixation.duration', EarlyPressFixation.duration)
-
         # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
         if routineForceEnded:
             routineTimer.reset()
@@ -2768,7 +2778,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         ButtonPressTarget.keys = []
         ButtonPressTarget.rt = []
         _ButtonPressTarget_allKeys = []
-
         # keep track of which components have finished
         TargetPresentationComponents = [TargetPresentationScreen, ButtonPressTarget]
         for thisComponent in TargetPresentationComponents:
@@ -2797,11 +2806,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             
             # if TargetPresentationScreen is starting this frame...
             if TargetPresentationScreen.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-
+                
                 # Send LSL Marker :
                 mark = 'Target'
-                outlet.push_sample([mark])  # Push event marker.
-
+                outlet.push_sample([mark])  # Push event marker.                
+                
                 # keep track of start time/frame for later
                 TargetPresentationScreen.frameNStart = frameN  # exact frame index
                 TargetPresentationScreen.tStart = t  # local t and not account for scr refresh
@@ -2809,8 +2818,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 win.timeOnFlip(TargetPresentationScreen, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
                 thisExp.timestampOnFlip(win, 'TargetPresentationScreen.started')
-
-                # update status 
+                # update status
                 TargetPresentationScreen.status = STARTED
                 TargetPresentationScreen.setAutoDraw(True)
             
@@ -2859,7 +2867,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                     ButtonPressTarget.frameNStop = frameN  # exact frame index
                     # add timestamp to datafile
                     thisExp.timestampOnFlip(win, 'ButtonPressTarget.stopped')
-
                     # update status
                     ButtonPressTarget.status = FINISHED
                     ButtonPressTarget.status = FINISHED
@@ -2915,6 +2922,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # store data for MainLoop (TrialHandler)
         MainLoop.addData('ButtonPressTarget.keys',ButtonPressTarget.keys)
         MainLoop.addData('ButtonPressTarget.corr', ButtonPressTarget.corr)
+
         if ButtonPressTarget.keys == None and EarlyPressFixation.keys == None and EarlyPressCue.keys == None:
             resp = "Late"
             print("Response: [%s]" % resp)
@@ -2931,7 +2939,8 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 resp = "Incorrect"
                 print("Response: [%s]" % resp)    
                 outlet.push_sample([resp])  # Push event marker
-                
+
+        if ButtonPressTarget.keys != None:  # we had a response
             MainLoop.addData('ButtonPressTarget.rt', ButtonPressTarget.rt)
             MainLoop.addData('ButtonPressTarget.duration', ButtonPressTarget.duration)
         # Run 'End Routine' code from codeFeedbacksaving
@@ -2948,7 +2957,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             #thisExp.addData('outcome_val', -2)
             calibration_accuracy.append(0)
         elif EarlyPressCue.keys != None or EarlyPressFixation.keys != None and colour == "yellow":
-            feedbackver = "5"; # Early press neutral cue -> points stay the same.
+            feedbackver = "6"; # Early press neutral cue -> points stay the same, but incorrect.
             thisExp.addData('outcome_label', "Early")
             #thisExp.addData('outcome_val', -2)
             calibration_accuracy.append(0)
@@ -2973,7 +2982,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             #thisExp.addData('outcome_val', -1)
             calibration_accuracy.append(0)
         elif ButtonPressTarget.corr == 0 and colour == "yellow":
-            feedbackver = "5"; # Incorrect press neutral cue -> points stay the same.
+            feedbackver = "6"; # Incorrect press neutral cue -> points stay the same.
             thisExp.addData('outcome_label', "Incorrect")
             #thisExp.addData('outcome_val', -1)
             calibration_accuracy.append(0)
@@ -3013,17 +3022,19 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             textcolour = 'red';
             treat_counter -= 1;
             
-        # Neutral cue, points unchanged (yellow)
-        else: #Feedback version 5
+        # Neutral cue, correct press, points unchanged (yellow)
+        elif feedbackver == "5":
             text = "Sie haben keinen Punkt verloren";
-            textcolour = 'white';
-           
-        
+            textcolour = 'green';
+            
+        # Neutral cue, incorrect press, points unchanged (yellow)
+        else: #Feedback version 6
+            text = "Sie haben keinen Punkt verloren";
+            textcolour = 'red';
         
         text_Feedback.setColor(textcolour, colorSpace='rgb')
         text_Feedback.setText(text)
         text_treatCounter.setText(treat_counter)
-        
         # keep track of which components have finished
         FeedbackCodeComponents = [text_Feedback, text_treatCounter]
         for thisComponent in FeedbackCodeComponents:
@@ -3067,7 +3078,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 win.timeOnFlip(text_Feedback, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
                 thisExp.timestampOnFlip(win, 'text_Feedback.started')
-
                 # update status
                 text_Feedback.status = STARTED
                 text_Feedback.setAutoDraw(True)
@@ -3159,7 +3169,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         continueRoutine = True
         # update component parameters for each repeat
         thisExp.addData('ITI500.started', globalClock.getTime())
-        
         # keep track of which components have finished
         ITI500Components = [trial_ITI]
         for thisComponent in ITI500Components:
@@ -3200,7 +3209,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 win.timeOnFlip(trial_ITI, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
                 thisExp.timestampOnFlip(win, 'trial_ITI.started')
-
                 # update status
                 trial_ITI.status = STARTED
                 trial_ITI.setAutoDraw(True)
