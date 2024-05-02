@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on Tue Apr 30 10:00:53 2024
+    on Tue Apr 30 15:16:44 2024
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -114,7 +114,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version='',
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='/Users/charlotte/Dropbox/Charite_PhD/tasks/MID_py/MID_task.py',
+        originPath='/Users/charlotte/Dropbox/Charite_PhD/tasks/MID_final/MID2.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -847,6 +847,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 # keyboard checking is just starting
                 waitOnFlip = True
                 win.callOnFlip(RT_measure_response.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(RT_measure_response.clearEvents, eventType='keyboard')  # clear events on next screen flip
             
             # if RT_measure_response is stopping this frame...
             if RT_measure_response.status == STARTED:
@@ -942,6 +943,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     sd_rt = rt_array.std()
     
     resp_time = mean_rt + sd_rt
+    print(resp_time)
     # keep track of which components have finished
     RT_measure_endComponents = [RT_measure_endtext]
     for thisComponent in RT_measure_endComponents:
@@ -2426,6 +2428,8 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         EarlyPressCue.keys = []
         EarlyPressCue.rt = []
         _EarlyPressCue_allKeys = []
+        # Run 'Begin Routine' code from button_count_cue_code
+        cue_button_count = 0 # Used for pushing button presses
         # keep track of which components have finished
         CuePresentationComponents = [CueCircle, EarlyPressCue]
         for thisComponent in CuePresentationComponents:
@@ -2454,7 +2458,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             
             # if CueCircle is starting this frame...
             if CueCircle.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
- 
+
                  # Send LSL Marker : 
                 if colour == 'blue': 
                     mark = 'Win_cue'
@@ -2465,8 +2469,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 else: 
                     mark = 'Loss_cue'
                     outlet.push_sample([mark])  # Push event marker.
- 
- 
+
                 # keep track of start time/frame for later
                 CueCircle.frameNStart = frameN  # exact frame index
                 CueCircle.tStart = t  # local t and not account for scr refresh
@@ -2575,7 +2578,9 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
             MainLoop.addData('EarlyPressCue.rt', EarlyPressCue.rt)
             MainLoop.addData('EarlyPressCue.duration', EarlyPressCue.duration)
-
+        # Run 'End Routine' code from button_count_cue_code
+        if EarlyPressCue.keys != None:
+            cue_button_count = 1
         # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
         if routineForceEnded:
             routineTimer.reset()
@@ -2589,6 +2594,8 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         EarlyPressFixation.keys = []
         EarlyPressFixation.rt = []
         _EarlyPressFixation_allKeys = []
+        # Run 'Begin Routine' code from fix_count_button_code
+        fix_button_count = 0 #to count if button pressed
         # keep track of which components have finished
         Fixation2000Components = [FixationScreen, EarlyPressFixation]
         for thisComponent in Fixation2000Components:
@@ -2617,10 +2624,10 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             
             # if FixationScreen is starting this frame...
             if FixationScreen.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-
+                
                 # Send LSL Marker : 
                 mark = 'Fixation2000'
-                outlet.push_sample([mark])  # Push event marker.
+                outlet.push_sample([mark])  # Push event marker.                    
 
                 # keep track of start time/frame for later
                 FixationScreen.frameNStart = frameN  # exact frame index
@@ -2729,6 +2736,9 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
             MainLoop.addData('EarlyPressFixation.rt', EarlyPressFixation.rt)
             MainLoop.addData('EarlyPressFixation.duration', EarlyPressFixation.duration)
+        # Run 'End Routine' code from fix_count_button_code
+        if EarlyPressFixation.keys != None:
+            fix_button_count = 1
         # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
         if routineForceEnded:
             routineTimer.reset()
@@ -2809,7 +2819,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 
                 # Send LSL Marker :
                 mark = 'Target'
-                outlet.push_sample([mark])  # Push event marker.                
+                outlet.push_sample([mark])  # Push event marker.                   
                 
                 # keep track of start time/frame for later
                 TargetPresentationScreen.frameNStart = frameN  # exact frame index
@@ -2927,7 +2937,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             resp = "Late"
             print("Response: [%s]" % resp)
             outlet.push_sample([resp])  # Push event marker
-        if ButtonPressTarget.keys != None:  # we had a response
+        if ButtonPressTarget.keys != None and EarlyPressFixation.keys == None and EarlyPressCue.keys == None:  # we had a response only at target routine
             # Send LSL Marker : Response as string
             if ButtonPressTarget.keys == corr_button:
                 mystring = ' '.join(map(str,ButtonPressTarget.keys))
@@ -2940,7 +2950,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
                 print("Response: [%s]" % resp)    
                 outlet.push_sample([resp])  # Push event marker
 
-        if ButtonPressTarget.keys != None:  # we had a response
+        if ButtonPressTarget.keys != None and EarlyPressFixation.keys == None and EarlyPressCue.keys == None:  # we had a response only at target routine
             MainLoop.addData('ButtonPressTarget.rt', ButtonPressTarget.rt)
             MainLoop.addData('ButtonPressTarget.duration', ButtonPressTarget.duration)
         # Run 'End Routine' code from codeFeedbacksaving
@@ -3066,11 +3076,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             
             # if text_Feedback is starting this frame...
             if text_Feedback.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
-
+                
                 # Send LSL Marker : 
                 mark = 'Feedback'
-                outlet.push_sample([mark])  # Push event marker.
-
+                outlet.push_sample([mark])  # Push event marker.                
+                
                 # keep track of start time/frame for later
                 text_Feedback.frameNStart = frameN  # exact frame index
                 text_Feedback.tStart = t  # local t and not account for scr refresh
@@ -3197,11 +3207,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             
             # if trial_ITI is starting this frame...
             if trial_ITI.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-
+                
                 # Send LSL Marker : 
                 mark = 'ITI'
-                outlet.push_sample([mark])  # Push event marker.
-
+                outlet.push_sample([mark])  # Push event marker.                
+                
                 # keep track of start time/frame for later
                 trial_ITI.frameNStart = frameN  # exact frame index
                 trial_ITI.tStart = t  # local t and not account for scr refresh

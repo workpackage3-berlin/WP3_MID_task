@@ -196,6 +196,23 @@
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
+      <CodeComponent name="button_count_cue_code" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="cue_button_count = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="cue_button_count = 0 # Used for pushing button presses" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="if ((EarlyPressCue.keys !== null)) {&amp;#10;    cue_button_count = 1;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="if EarlyPressCue.keys != None:&amp;#10;    cue_button_count = 1" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="button_count_cue_code" valType="code" updates="None" name="name"/>
+      </CodeComponent>
     </Routine>
     <Routine name="EndScreen">
       <RoutineSettingsComponent name="EndScreen" plugin="None">
@@ -606,7 +623,7 @@
         <Param val="'left','right'" valType="list" updates="set every repeat" name="allowedKeys"/>
         <Param val="$rt_corr_press" valType="str" updates="constant" name="correctAns"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="bool" updates="constant" name="discard previous"/>
+        <Param val="True" valType="bool" updates="constant" name="discard previous"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
         <Param val="RT_measure_response" valType="code" updates="None" name="name"/>
@@ -685,8 +702,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="import * as np from 'numpy';&amp;#10;rt_array = np.array(rt_list);&amp;#10;mean_rt = rt_array.mean();&amp;#10;sd_rt = rt_array.std();&amp;#10;resp_time = (mean_rt + sd_rt);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# turn the list into a numpy array that supports &amp;#10;# mathematical operations better:&amp;#10;import numpy as np&amp;#10;rt_array = np.array(rt_list)&amp;#10;mean_rt = rt_array.mean()&amp;#10;sd_rt = rt_array.std()&amp;#10;&amp;#10;resp_time = mean_rt + sd_rt" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="import * as np from 'numpy';&amp;#10;rt_array = np.array(rt_list);&amp;#10;mean_rt = rt_array.mean();&amp;#10;sd_rt = rt_array.std();&amp;#10;resp_time = (mean_rt + sd_rt);&amp;#10;console.log(resp_time);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="# turn the list into a numpy array that supports &amp;#10;# mathematical operations better:&amp;#10;import numpy as np&amp;#10;rt_array = np.array(rt_list)&amp;#10;mean_rt = rt_array.mean()&amp;#10;sd_rt = rt_array.std()&amp;#10;&amp;#10;resp_time = mean_rt + sd_rt&amp;#10;print(resp_time)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -1398,6 +1415,23 @@
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
+      <CodeComponent name="fix_count_button_code" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="fix_button_count = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="fix_button_count = 0 #to count if button pressed" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="if ((EarlyPressFixation.keys !== null)) {&amp;#10;    fix_button_count = 1;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="if EarlyPressFixation.keys != None:&amp;#10;    fix_button_count = 1" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="fix_count_button_code" valType="code" updates="None" name="name"/>
+      </CodeComponent>
     </Routine>
     <Routine name="initial_iti">
       <RoutineSettingsComponent name="initial_iti" plugin="None">
