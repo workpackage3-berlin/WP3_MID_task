@@ -529,7 +529,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "Halfway_break" ---
     Halfway_break_text = visual.TextStim(win=win, name='Halfway_break_text',
-        text='Break time. \n\nTo continue, press the right button. ',
+        text='Kurze Pause! \n\nSie können sich jetzt ausruhen, bevor Sie wieder anfangen.\n\nWenn Sie bereit sind, drücken Sie die rechte Taste.',
         font='Open Sans',
         pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
