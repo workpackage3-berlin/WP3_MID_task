@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on Tue May 14 14:28:39 2024
+    on Fri May 17 14:41:27 2024
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -114,7 +114,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version='',
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='/Users/charlotte/Dropbox/Charite_PhD/tasks/MID_new_version/MID_new_version.py',
+        originPath='/Users/charlotte/Dropbox/Charite_PhD/tasks/MID_new_version/MID_new_v2.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -539,12 +539,13 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     
     # --- Initialize components for Routine "EndScreen" ---
     EndScreenText = visual.TextStim(win=win, name='EndScreenText',
-        text='Ende der Aufgabe.\n\nDanke für die Teilnahme.',
+        text='Herzlichen Glückwunsch, Sie haben die Aufgabe erfolgreich beendet!\n \nBitte geben Sie der Versuchsleiterin Bescheid.\n\nDanke für die Teilnahme.',
         font='Open Sans',
         pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=0.0);
+    EndScreen_buttonpress = keyboard.Keyboard()
     
     # create some handy timers
     if globalClock is None:
@@ -2215,7 +2216,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             win.callOnFlip(endTraining_startMain.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(endTraining_startMain.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if endTraining_startMain.status == STARTED and not waitOnFlip:
-            theseKeys = endTraining_startMain.getKeys(keyList=['s'], ignoreKeys=["escape"], waitRelease=False)
+            theseKeys = endTraining_startMain.getKeys(keyList=['p'], ignoreKeys=["escape"], waitRelease=False)
             _endTraining_startMain_allKeys.extend(theseKeys)
             if len(_endTraining_startMain_allKeys):
                 endTraining_startMain.keys = _endTraining_startMain_allKeys[0].name  # just the first key pressed
@@ -2711,7 +2712,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
                 # Send LSL Marker : 
                 mark = 'Fixation2000'
-                outlet.push_sample([mark])  # Push event marker.   
+                outlet.push_sample([mark])  # Push event marker. 
 
                 # keep track of start time/frame for later
                 FixationScreen.frameNStart = frameN  # exact frame index
@@ -2902,7 +2903,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
                 # Send LSL Marker :
                 mark = 'Target'
-                outlet.push_sample([mark])  # Push event marker.      
+                outlet.push_sample([mark])  # Push event marker.    
 
                 # keep track of start time/frame for later
                 TargetPresentationScreen.frameNStart = frameN  # exact frame index
@@ -3035,7 +3036,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
         if ButtonPressTarget.keys != None and EarlyPressFixation.keys == None and EarlyPressCue.keys == None:  # we had a response only at target routine
             MainLoop.addData('ButtonPressTarget.rt', ButtonPressTarget.rt)
-            MainLoop.addData('ButtonPressTarget.duration', ButtonPressTarget.duration)        
+            MainLoop.addData('ButtonPressTarget.duration', ButtonPressTarget.duration) 
 
         # Run 'End Routine' code from codeFeedbacksaving
         feedbackver = [];
@@ -3226,7 +3227,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
                 # Send LSL Marker : 
                 mark = 'Feedback'
-                outlet.push_sample([mark])  # Push event marker.     
+                outlet.push_sample([mark])  # Push event marker.   
 
                 # keep track of start time/frame for later
                 text_Feedback.frameNStart = frameN  # exact frame index
@@ -3357,7 +3358,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
                 # Send LSL Marker : 
                 mark = 'ITI'
-                outlet.push_sample([mark])  # Push event marker.     
+                outlet.push_sample([mark])  # Push event marker.    
 
                 # keep track of start time/frame for later
                 trial_ITI.frameNStart = frameN  # exact frame index
@@ -3553,8 +3554,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     continueRoutine = True
     # update component parameters for each repeat
     thisExp.addData('EndScreen.started', globalClock.getTime())
+    EndScreen_buttonpress.keys = []
+    EndScreen_buttonpress.rt = []
+    _EndScreen_buttonpress_allKeys = []
     # keep track of which components have finished
-    EndScreenComponents = [EndScreenText]
+    EndScreenComponents = [EndScreenText, EndScreen_buttonpress]
     for thisComponent in EndScreenComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -3569,7 +3573,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     
     # --- Run Routine "EndScreen" ---
     routineForceEnded = not continueRoutine
-    while continueRoutine and routineTimer.getTime() < 3.0:
+    while continueRoutine:
         # get current time
         t = routineTimer.getTime()
         tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -3597,18 +3601,33 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # if EndScreenText is stopping this frame...
-        if EndScreenText.status == STARTED:
-            # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > EndScreenText.tStartRefresh + 3-frameTolerance:
-                # keep track of stop time/frame for later
-                EndScreenText.tStop = t  # not accounting for scr refresh
-                EndScreenText.frameNStop = frameN  # exact frame index
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'EndScreenText.stopped')
-                # update status
-                EndScreenText.status = FINISHED
-                EndScreenText.setAutoDraw(False)
+        # *EndScreen_buttonpress* updates
+        waitOnFlip = False
+        
+        # if EndScreen_buttonpress is starting this frame...
+        if EndScreen_buttonpress.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            EndScreen_buttonpress.frameNStart = frameN  # exact frame index
+            EndScreen_buttonpress.tStart = t  # local t and not account for scr refresh
+            EndScreen_buttonpress.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(EndScreen_buttonpress, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'EndScreen_buttonpress.started')
+            # update status
+            EndScreen_buttonpress.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(EndScreen_buttonpress.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(EndScreen_buttonpress.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if EndScreen_buttonpress.status == STARTED and not waitOnFlip:
+            theseKeys = EndScreen_buttonpress.getKeys(keyList=['p'], ignoreKeys=["escape"], waitRelease=False)
+            _EndScreen_buttonpress_allKeys.extend(theseKeys)
+            if len(_EndScreen_buttonpress_allKeys):
+                EndScreen_buttonpress.keys = _EndScreen_buttonpress_allKeys[-1].name  # just the last key pressed
+                EndScreen_buttonpress.rt = _EndScreen_buttonpress_allKeys[-1].rt
+                EndScreen_buttonpress.duration = _EndScreen_buttonpress_allKeys[-1].duration
+                # a response ends the routine
+                continueRoutine = False
         
         # check for quit (typically the Esc key)
         if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -3636,11 +3655,16 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     thisExp.addData('EndScreen.stopped', globalClock.getTime())
-    # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
-    if routineForceEnded:
-        routineTimer.reset()
-    else:
-        routineTimer.addTime(-3.000000)
+    # check responses
+    if EndScreen_buttonpress.keys in ['', [], None]:  # No response was made
+        EndScreen_buttonpress.keys = None
+    thisExp.addData('EndScreen_buttonpress.keys',EndScreen_buttonpress.keys)
+    if EndScreen_buttonpress.keys != None:  # we had a response
+        thisExp.addData('EndScreen_buttonpress.rt', EndScreen_buttonpress.rt)
+        thisExp.addData('EndScreen_buttonpress.duration', EndScreen_buttonpress.duration)
+    thisExp.nextEntry()
+    # the Routine "EndScreen" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     
     # mark experiment as finished
     endExperiment(thisExp, win=win, inputs=inputs)
