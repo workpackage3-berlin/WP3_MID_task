@@ -1,0 +1,1 @@
+Here are stored all EEG impedances measurements. 
