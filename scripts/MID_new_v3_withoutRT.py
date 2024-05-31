@@ -1052,11 +1052,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # Run 'Begin Routine' code from TargetPresTiming_code_training
         # Calculates target presentation time, based on performance on previous trial.
         if trial_num > 1:
-            if prev_trial_acc == "incorrect" and resp_time < 1:
+            if prev_trial_acc == "incorrect" or prev_trial_acc == "early" or prev_trial_acc == "no_response" and resp_time < 1:
                 resp_time = resp_time + 0.050
                 thisExp.addData('available_resp_time', resp_time);
                 thisExp.addData('previous_trial_acc', prev_trial_acc);
-            elif prev_trial_acc == "incorrect" and resp_time > 1:
+            elif prev_trial_acc == "incorrect" or prev_trial_acc == "early" or prev_trial_acc == "no_response" and resp_time > 1:
                 resp_time = resp_time
                 thisExp.addData('available_resp_time', resp_time);
                 thisExp.addData('previous_trial_acc', prev_trial_acc);
@@ -1217,20 +1217,20 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # Prepares which feedback version is shown, based on win or loss cues and button press performance. 
         if EarlyPressCue_training.keys != None or EarlyPressFixation_training.keys != None and colour == "blue":
             feedbackver_training = "3"; # Early press win cue -> did not win point. 
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "early"
             thisExp.addData('outcome_label_training', "Early")
             #thisExp.addData('practice_outcome_val', -2)
             calibration_accuracy.append(0)
         elif EarlyPressCue_training.keys != None or EarlyPressFixation_training.keys != None and colour == "red":
             feedbackver_training = "4"; # Early press loss cue -> lost point.
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "early"
             thisExp.addData('outcome_label_training', "Early")
             #thisExp.addData('practice_outcome_val', -2)
             calibration_accuracy.append(0)
         elif EarlyPressCue_training.keys != None or EarlyPressFixation_training.keys != None and colour == "yellow":
             feedbackver_training = "6"; # Early press neutral cue -> points stay the same but incorrect.
             thisExp.addData('outcome_label_training', "Early")
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "early"
             #thisExp.addData('practice_outcome_val', -2)
             calibration_accuracy.append(0)
         elif ButtonPressTarget_training.corr == 1 and colour == "blue":
@@ -1254,19 +1254,19 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         elif ButtonPressTarget_training.corr == 0 and ButtonPressTarget_training.keys == None and colour == "blue":
             feedbackver_training = "3"; # Incorrect press win cue -> did not win point.
             thisExp.addData('outcome_label_training', "No_response")
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "no_response"
             #thisExp.addData('practice_outcome_val', -1)
             calibration_accuracy.append(0)
         elif ButtonPressTarget_training.corr == 0 and ButtonPressTarget_training.keys == None and colour == "yellow":
             feedbackver_training = "6"; # Incorrect press neutral cue -> points stay the same.
             thisExp.addData('outcome_label_training', "No_response")
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "no_response"
             #thisExp.addData('practice_outcome_val', -1)
             calibration_accuracy.append(0)
         elif ButtonPressTarget_training.corr == 0 and ButtonPressTarget_training.keys == None and colour == "red":
             feedbackver_training = "4"; # Incorrect press loss cue -> lost point.
             thisExp.addData('outcome_label_training', "No_response")
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "no_response"
             #thisExp.addData('practice_outcome_val', -1)
             calibration_accuracy.append(0)
         elif ButtonPressTarget_training.corr == 0 and colour == "blue":
@@ -2313,11 +2313,11 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # Run 'Begin Routine' code from codeTargetPresTiming
         # Calculates target presentation time, based on performance on previous trial.
         if trial_num > 1:
-            if prev_trial_acc == "incorrect" and resp_time < 1:
+            if prev_trial_acc == "incorrect" or prev_trial_acc == "early" or prev_trial_acc == "no_response" and resp_time < 1:
                 resp_time = resp_time + 0.050
                 thisExp.addData('available_resp_time', resp_time);
                 thisExp.addData('previous_trial_acc', prev_trial_acc);
-            elif prev_trial_acc == "incorrect" and resp_time > 1:
+            elif prev_trial_acc == "incorrect" or prev_trial_acc == "early" or prev_trial_acc == "no_response" and resp_time > 1:
                 resp_time = resp_time
                 thisExp.addData('available_resp_time', resp_time);
                 thisExp.addData('previous_trial_acc', prev_trial_acc);
@@ -2503,19 +2503,19 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         if EarlyPressCue.keys != None or EarlyPressFixation.keys != None and colour == "blue":
             feedbackver = "3"; # Early press win cue -> did not win point.
             thisExp.addData('outcome_label', "Early")
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "early"
             #thisExp.addData('outcome_val', -2)
             calibration_accuracy.append(0)
         elif EarlyPressCue.keys != None or EarlyPressFixation.keys != None and colour == "red":
             feedbackver = "4"; # Early press loss cue -> lost point.
             thisExp.addData('outcome_label', "Early")
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "early"
             #thisExp.addData('outcome_val', -2)
             calibration_accuracy.append(0)
         elif EarlyPressCue.keys != None or EarlyPressFixation.keys != None and colour == "yellow":
             feedbackver = "6"; # Early press neutral cue -> points stay the same, but incorrect.
             thisExp.addData('outcome_label', "Early")
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "early"
             #thisExp.addData('outcome_val', -2)
             calibration_accuracy.append(0)
         elif ButtonPressTarget.corr == 1 and colour == "blue":
@@ -2539,19 +2539,19 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         elif ButtonPressTarget.corr == 0 and ButtonPressTarget.keys == None and colour == "blue":
             feedbackver = "3"; # Incorrect press win cue -> did not win point.
             thisExp.addData('outcome_label', "No_response")
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "no_response"
             #thisExp.addData('practice_outcome_val', -1)
             calibration_accuracy.append(0)
         elif ButtonPressTarget.corr == 0 and ButtonPressTarget.keys == None and colour == "yellow":
             feedbackver = "6"; # Incorrect press neutral cue -> points stay the same.
             thisExp.addData('outcome_label', "No_response")
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "no_response"
             #thisExp.addData('practice_outcome_val', -1)
             calibration_accuracy.append(0)
         elif ButtonPressTarget.corr == 0 and ButtonPressTarget.keys == None and colour == "red":
             feedbackver = "4"; # Incorrect press loss cue -> lost point.
             thisExp.addData('outcome_label', "No_response")
-            prev_trial_acc = "incorrect"
+            prev_trial_acc = "no_response"
             #thisExp.addData('practice_outcome_val', -1)
             calibration_accuracy.append(0)
         elif ButtonPressTarget.corr == 0 and colour == "blue":
