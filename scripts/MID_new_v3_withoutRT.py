@@ -163,7 +163,7 @@ def setupWindow(expInfo=None, win=None):
     if win is None:
         # if not given a window to setup, make one
         win = visual.Window(
-            size=[1024, 600], fullscr=False, screen=1,
+            size=[1024, 600], fullscr=True, screen=1,
             winType='pyglet', allowStencil=False,
             monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
@@ -1949,7 +1949,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         routineTimer.addTime(-0.500000)
     
     # set up handler to look after randomisation of conditions etc
-    MainLoop = data.TrialHandler(nReps=5.0, method='random', 
+    MainLoop = data.TrialHandler(nReps=23.0, method='random', 
         extraInfo=expInfo, originPath=-1,
         trialList=data.importConditions('MID_conditions.xlsx'),
         seed=None, name='MainLoop')
