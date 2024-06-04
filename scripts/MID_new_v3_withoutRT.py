@@ -348,7 +348,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     # Run 'Begin Experiment' code from initial_iti_code_training
     # Variables used for calculating target presentation time 
     # and score count in practice loop
-    reward_counter_training = 0;
+    treat_counter = 10;
     trial_num = 0;
     
     
@@ -434,7 +434,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         opacity=None, depth=0.0, interpolate=True)
     # Run 'Begin Experiment' code from leadin_ITI_code
     # Variables used for score count
-    treat_counter = 0;
+    #treat_counter = 0;
     
     
     # --- Initialize components for Routine "CuePresentation" ---
@@ -1362,7 +1362,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         if feedbackver_training == "1":
             text_training = "Sie haben einen Punkt gewonnen";
             textcolour_training = 'green';
-            reward_counter_training += 1;
+            treat_counter += 1;
             
         # Correct press loss cue (red)
         elif feedbackver_training == "2":
@@ -1378,7 +1378,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         elif feedbackver_training == "4":
             text_training = "Sie haben einen Punkt verloren";
             textcolour_training = 'red';
-            reward_counter_training -= 1;
+            treat_counter -= 1;
         
         # Neutral cue, correct press, points unchanged (yellow)
         elif feedbackver_training == "5":
@@ -1394,7 +1394,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         
         text_Feedback_training.setColor(textcolour_training, colorSpace='rgb')
         text_Feedback_training.setText(text_training)
-        text_treatCounter_training.setText(reward_counter_training)
+        text_treatCounter_training.setText(treat_counter)
         # keep track of which components have finished
         FeedbackCode_trainingComponents = [text_Feedback_training, text_treatCounter_training]
         for thisComponent in FeedbackCode_trainingComponents:
