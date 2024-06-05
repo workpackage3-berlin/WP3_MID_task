@@ -35,7 +35,7 @@ from psychopy.hardware import keyboard
 
 from pylsl import StreamInfo, StreamOutlet
 # Set up LabStreamingLayer stream.
-info = StreamInfo(name='PsychoPy_LSL_MID', type='Markers', channel_count=1, nominal_srate=0, channel_format='string', source_id='psy_marker')
+info = StreamInfo(name='Psychopy', type='Markers', channel_count=1, nominal_srate=0, channel_format='string', source_id='psy_marker')
 outlet = StreamOutlet(info)  # Broadcast the stream.
 
 # --- Setup global variables (available in all functions) ---
