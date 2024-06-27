@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.2.3),
-    on Tue Jun 25 13:55:02 2024
+    on Wed Jun 26 12:10:42 2024
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -112,7 +112,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version='',
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='/Users/charlotte/Dropbox/Charite_PhD/tasks/MID_new_version/MID_v6_discard_and_sync_uncheckedg copy.py',
+        originPath='/Users/charlotte/Dropbox/Charite_PhD/tasks/MID_new_version/MID_v7.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -487,6 +487,16 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         lineWidth=1.0,     colorSpace='rgb',  lineColor='white', fillColor='white',
         opacity=None, depth=0.0, interpolate=True)
     
+    # --- Initialize components for Routine "Break_pulses" ---
+    Break_pulse_text = visual.TextStim(win=win, name='Break_pulse_text',
+        text='Kurze Pause!\n\n\nBitte geben Sie der Versuchsleiterin Bescheid.',
+        font='Open Sans',
+        pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=0.0);
+    Break_pulse_press = keyboard.Keyboard()
+    
     # --- Initialize components for Routine "Halfway_break" ---
     Halfway_break_text = visual.TextStim(win=win, name='Halfway_break_text',
         text='Kurze Pause!\n\nSie können sich jetzt ausruhen, bevor Sie wieder anfangen.\n\nWenn Sie bereit sind, drücken Sie die rechte Taste.',
@@ -685,7 +695,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # if initial_iti_fig_training is stopping this frame...
         if initial_iti_fig_training.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > initial_iti_fig_training.tStartRefresh + 2.0-frameTolerance:
+            if tThisFlipGlobal > initial_iti_fig_training.tStartRefresh + 2-frameTolerance:
                 # keep track of stop time/frame for later
                 initial_iti_fig_training.tStop = t  # not accounting for scr refresh
                 initial_iti_fig_training.frameNStop = frameN  # exact frame index
@@ -1556,7 +1566,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             # if trial_ITI_training is stopping this frame...
             if trial_ITI_training.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > trial_ITI_training.tStartRefresh + 2.0-frameTolerance:
+                if tThisFlipGlobal > trial_ITI_training.tStartRefresh + 2-frameTolerance:
                     # keep track of stop time/frame for later
                     trial_ITI_training.tStop = t  # not accounting for scr refresh
                     trial_ITI_training.frameNStop = frameN  # exact frame index
@@ -1891,7 +1901,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         # if first_ITI_fig is stopping this frame...
         if first_ITI_fig.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > first_ITI_fig.tStartRefresh + 2.0-frameTolerance:
+            if tThisFlipGlobal > first_ITI_fig.tStartRefresh + 2-frameTolerance:
                 # keep track of stop time/frame for later
                 first_ITI_fig.tStop = t  # not accounting for scr refresh
                 first_ITI_fig.frameNStop = frameN  # exact frame index
@@ -2122,7 +2132,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
             MainLoop.addData('EarlyPressCue.rt', EarlyPressCue.rt)
             MainLoop.addData('EarlyPressCue.duration', EarlyPressCue.duration)
-
         # Run 'End Routine' code from button_count_cue_code
         if EarlyPressCue.keys != None:
             button_pressed = 1
@@ -2273,14 +2282,14 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
         if EarlyPressFixation.keys in ['', [], None]:  # No response was made
             EarlyPressFixation.keys = None
         MainLoop.addData('EarlyPressFixation.keys',EarlyPressFixation.keys)
-
+        
         if EarlyPressFixation.keys != None and EarlyPressCue.keys == None:  # we had a response at Fixation only
 
             # Send LSL Marker : Response as string
             resp = "Early"
             print("Response: [%s]" % resp)    
-            outlet.push_sample([resp])  # Push event marker.  
-            
+            outlet.push_sample([resp])  # Push event marker.     
+
             MainLoop.addData('EarlyPressFixation.rt', EarlyPressFixation.rt)
             MainLoop.addData('EarlyPressFixation.duration', EarlyPressFixation.duration)
 
@@ -2662,7 +2671,6 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
             MainLoop.addData('LatePress_blankScreen.rt', LatePress_blankScreen.rt)
             MainLoop.addData('LatePress_blankScreen.duration', LatePress_blankScreen.duration)
-
         # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
         if routineForceEnded:
             routineTimer.reset()
@@ -2893,7 +2901,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
 
             MainLoop.addData('LatePress_feedback.rt', LatePress_feedback.rt)
             MainLoop.addData('LatePress_feedback.duration', LatePress_feedback.duration)
-        
+
         # Run 'End Routine' code from feedbacktextcode
         if LatePress_feedback.keys == None and LatePress_blankScreen.keys == None and EarlyPressCue.keys == None and EarlyPressFixation.keys == None and ButtonPressTarget.keys == None and button_pressed == 0:
             resp = "No response"
@@ -2963,7 +2971,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             # if trial_ITI is stopping this frame...
             if trial_ITI.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > trial_ITI.tStartRefresh + 2.0-frameTolerance:
+                if tThisFlipGlobal > trial_ITI.tStartRefresh + 2-frameTolerance:
                     # keep track of stop time/frame for later
                     trial_ITI.tStop = t  # not accounting for scr refresh
                     trial_ITI.frameNStop = frameN  # exact frame index
@@ -3007,6 +3015,125 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
             routineTimer.reset()
         else:
             routineTimer.addTime(-2.000000)
+        
+        # --- Prepare to start Routine "Break_pulses" ---
+        continueRoutine = True
+        # update component parameters for each repeat
+        thisExp.addData('Break_pulses.started', globalClock.getTime())
+        Break_pulse_press.keys = []
+        Break_pulse_press.rt = []
+        _Break_pulse_press_allKeys = []
+        # Run 'Begin Routine' code from Break_pulse_code
+        if MainLoop.thisN != 69:
+            continueRoutine = False
+        
+        # keep track of which components have finished
+        Break_pulsesComponents = [Break_pulse_text, Break_pulse_press]
+        for thisComponent in Break_pulsesComponents:
+            thisComponent.tStart = None
+            thisComponent.tStop = None
+            thisComponent.tStartRefresh = None
+            thisComponent.tStopRefresh = None
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        # reset timers
+        t = 0
+        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+        frameN = -1
+        
+        # --- Run Routine "Break_pulses" ---
+        routineForceEnded = not continueRoutine
+        while continueRoutine:
+            # get current time
+            t = routineTimer.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+            
+            # *Break_pulse_text* updates
+            
+            # if Break_pulse_text is starting this frame...
+            if Break_pulse_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                Break_pulse_text.frameNStart = frameN  # exact frame index
+                Break_pulse_text.tStart = t  # local t and not account for scr refresh
+                Break_pulse_text.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(Break_pulse_text, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'Break_pulse_text.started')
+                # update status
+                Break_pulse_text.status = STARTED
+                Break_pulse_text.setAutoDraw(True)
+            
+            # if Break_pulse_text is active this frame...
+            if Break_pulse_text.status == STARTED:
+                # update params
+                pass
+            
+            # *Break_pulse_press* updates
+            waitOnFlip = False
+            
+            # if Break_pulse_press is starting this frame...
+            if Break_pulse_press.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                Break_pulse_press.frameNStart = frameN  # exact frame index
+                Break_pulse_press.tStart = t  # local t and not account for scr refresh
+                Break_pulse_press.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(Break_pulse_press, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'Break_pulse_press.started')
+                # update status
+                Break_pulse_press.status = STARTED
+                # keyboard checking is just starting
+                waitOnFlip = True
+                win.callOnFlip(Break_pulse_press.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(Break_pulse_press.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            if Break_pulse_press.status == STARTED and not waitOnFlip:
+                theseKeys = Break_pulse_press.getKeys(keyList=['p'], ignoreKeys=["escape"], waitRelease=False)
+                _Break_pulse_press_allKeys.extend(theseKeys)
+                if len(_Break_pulse_press_allKeys):
+                    Break_pulse_press.keys = _Break_pulse_press_allKeys[-1].name  # just the last key pressed
+                    Break_pulse_press.rt = _Break_pulse_press_allKeys[-1].rt
+                    Break_pulse_press.duration = _Break_pulse_press_allKeys[-1].duration
+                    # a response ends the routine
+                    continueRoutine = False
+            
+            # check for quit (typically the Esc key)
+            if defaultKeyboard.getKeys(keyList=["escape"]):
+                thisExp.status = FINISHED
+            if thisExp.status == FINISHED or endExpNow:
+                endExperiment(thisExp, inputs=inputs, win=win)
+                return
+            
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested a forced-end of Routine
+                routineForceEnded = True
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
+            for thisComponent in Break_pulsesComponents:
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
+            
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+        
+        # --- Ending Routine "Break_pulses" ---
+        for thisComponent in Break_pulsesComponents:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        thisExp.addData('Break_pulses.stopped', globalClock.getTime())
+        # check responses
+        if Break_pulse_press.keys in ['', [], None]:  # No response was made
+            Break_pulse_press.keys = None
+        MainLoop.addData('Break_pulse_press.keys',Break_pulse_press.keys)
+        if Break_pulse_press.keys != None:  # we had a response
+            MainLoop.addData('Break_pulse_press.rt', Break_pulse_press.rt)
+            MainLoop.addData('Break_pulse_press.duration', Break_pulse_press.duration)
+        # the Routine "Break_pulses" was not non-slip safe, so reset the non-slip timer
+        routineTimer.reset()
         
         # --- Prepare to start Routine "Halfway_break" ---
         continueRoutine = True
