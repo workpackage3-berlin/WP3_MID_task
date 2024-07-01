@@ -163,7 +163,7 @@ def setupWindow(expInfo=None, win=None):
     if win is None:
         # if not given a window to setup, make one
         win = visual.Window(
-            size=[1920, 1080], fullscr=True, screen=1,
+            size=[1920, 1080], fullscr=False, screen=1,
             winType='pyglet', allowStencil=False,
             monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',
             backgroundImage='', backgroundFit='none',
@@ -510,7 +510,7 @@ def run(expInfo, thisExp, win, inputs, globalClock=None, thisSession=None):
     # --- Initialize components for Routine "post_break_ITI" ---
     post_break_iti_fig = visual.ShapeStim(
         win=win, name='post_break_iti_fig', vertices='cross',
-        size=(0.5, 0.5),
+        size=(0.01, 0.01),
         ori=0.0, pos=(0, 0), anchor='center',
         lineWidth=1.0,     colorSpace='rgb',  lineColor='white', fillColor='white',
         opacity=None, depth=0.0, interpolate=True)
