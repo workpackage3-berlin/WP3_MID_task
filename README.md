@@ -27,4 +27,3 @@ These instructions will get you a copy of the project up and running on your loc
 	- ```conda activate tmsi```
 	- ```pip install edflib-Python==1.0.8 mne==1.6.0 pylsl==1.16.2 pyside2==5.15.2.1 pyxdf==1.16.5```
 
-**README** credit: [@juliettevivien](https://github.com/juliettevivien)
