@@ -3,6 +3,7 @@ lsl-data/
 measurements/
 */data/
 !measurements/README.md
+.DS_Store
 
 
 # Byte-compiled / optimized / DLL files
