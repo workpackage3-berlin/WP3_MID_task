@@ -1,9 +1,9 @@
 # Folders
 measurements/*
 !measurements/README.md
-data/
+data/*
 lsl-data/
-
+old/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
